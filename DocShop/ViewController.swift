@@ -9,17 +9,54 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let store = CoreDataStack.store
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        generateTestData()
+        
+        store.fetchFamily()
+        store.fetchPatient()
+        
+        
+//        if let firstFam = store.families.first {
+//            if let patients = firstFam.patients {
+//                dump(patients)
+//                for patient in patients {
+//                    print(patient)
+//                    
+//                    patient.
+//                }
+//                
+//            }
+//        }
+
+        
+    }
+    
+    func generateTestData() {
+        
+        let jim = store.createPatient(name: "Jim", balance: 100000.0, condition: "Flu")
+        
+        
+        
+        let may = store.createPatient(name: "May", balance: 10, condition: "cold")
+        let campagno = store.createFamily(name: "Campagno", balance: 100000.0)
+        let cheung = store.createFamily(name: "Cheung", balance: 10)
+        
+        let johann = store.createPatient(name: "johann", balance: 0, condition: "healthy")
+        
+      //  store.addPatientToFamily(patient: jim, family: campagno)
+        store.addPatientToFamily(patient: may, family: cheung)
+        store.addPatientToFamily(patient: johann, family: campagno)
+        
+        
+        
+        
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+   
 }
-
